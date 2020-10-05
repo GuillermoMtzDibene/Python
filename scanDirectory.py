@@ -36,9 +36,3 @@ def scanDirectory(directory = os.curdir, extension = '.py', in_here = True):
                         allsizes.append((size, path))
     allsizes.sort()
     return (visited, allsizes)
-
-
-if __name__ == '__main__':
-    (visited, sizes) = scanDirectory(directory = r'C:\Users\Guillermo\Documents\Libros', extension = '.pdf', in_here = False)
-    pprint.pprint(sizes[-3:])
-    pprint.pprint(visited)
