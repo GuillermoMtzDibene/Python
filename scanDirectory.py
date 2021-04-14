@@ -8,8 +8,8 @@ def normalise_path(path):
 
 def scanDirectory(directory = os.curdir, extension = '.py', in_here = True):
     """
-    Find the largest file with a given extension in a given directory if in_here is true (default).
-    Else search the entire directory starting in the passed directory.
+    Find the largest file with a given extension in the current working directory if in_here is true (default),
+    else search the entire directory starting in the passed directory.
     """
     visited = set()
     allsizes = []
