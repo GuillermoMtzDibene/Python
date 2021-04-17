@@ -14,7 +14,7 @@ resize your image!
 import sys
 
 from energy import compute_energy
-from seam_v2 import compute_vertical_seam_v2, visualize_seam_on_image
+from seam import compute_vertical_seam, visualize_seam_on_image
 from utils import Color, read_image_into_array, write_array_into_image
 
 
@@ -59,7 +59,7 @@ def remove_n_lowest_seams_from_image(image, num_seams_to_remove):
     energy_data = compute_energy(image)
 
     for _ in range(num_seams_to_remove):
-        seam_to_remove = compute_vertical_seam_v2(energy_data)[0]
+        seam_to_remove = compute_vertical_seam(energy_data)[0]
         remove_seam_from_image(image, seam_to_remove)
 
     return image

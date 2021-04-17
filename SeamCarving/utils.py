@@ -1,9 +1,6 @@
 """
 A set of utilities that are helpful for working with images. These are utilities
-needed to actually apply the seam carving algorithm to images, but because they
-aren't core the algorithm, they are implemented for you.
-
-There is no need to change any code in this module.
+needed to actually apply the seam carving algorithm to images.
 """
 
 
@@ -48,8 +45,6 @@ def write_array_into_image(pixels, filename):
     Write the given 2D array of pixels into an image with the given filename.
     The input pixels are represented as an array, where each element is a row.
     Each row is an array, where each element is a color.
-
-    See: Color
     """
 
     h = len(pixels)

@@ -4,9 +4,7 @@ The first step in the seam carving algorithm: computing the energy of an image.
 The functions you fill out in this module will be used as part of the overall
 seam carving process. If you run this module in isolation, the energy of an
 image will be visualized as a grayscale heat map, with brighter spots
-representing pixels:
-
-    python3 energy.py surfer.jpg surfer-energy.png
+representing pixels.
 """
 
 
@@ -23,22 +21,22 @@ def energy_at(pixels, x, y):
     the requested position. In the case the requested position is at the edge
     of the image, the current position is used whenever a "surrounding position"
     would go out of bounds.
-
-    This is one of the functions you will need to implement. Expected return
-    value: a single number representing the energy at that point.
     """
     
     h = len(pixels)
     w = len(pixels[0])
-    
+
+    #Calculate the previous and subsequent x coordinate taking care of the edges of the image
     x0 = x if x == 0 else x - 1
     x1 = x if x == w - 1 else x + 1
-
+    #Now calculate the increments in the RGB colours
     dxr = pixels[y][x0].r - pixels[y][x1].r
     dxg = pixels[y][x0].g - pixels[y][x1].g
     dxb = pixels[y][x0].b - pixels[y][x1].b
+    #This is the total increment in x
     dx = dxr * dxr + dxg * dxg + dxb * dxb
-    
+
+    #Ditto for y
     y0 = y if y == 0 else y - 1
     y1 = y if y == h - 1 else y + 1
 
@@ -47,19 +45,16 @@ def energy_at(pixels, x, y):
     dyb = pixels[y0][x].b - pixels[y1][x].b
     dy = dyr * dyr + dyg * dyg + dyb * dyb
 
+    #The energy is then the sum of the increments in both the x and y axes
     return dx + dy
 
 def compute_energy(pixels):
     """
-    Compute the energy of the image at every pixel. Should use the `energy_at`
-    function to actually compute the energy at any single position.
+    Compute the energy of the image at every pixel.
 
-    The input is given as a 2D array of colors, and the output should be a 2D
+    The input is given as a 2D array of colors, and the output is a 2D
     array of numbers, each representing the energy value at the corresponding
     position.
-
-    This is one of the functions you will need to implement. Expected return
-    value: the 2D grid of energy values.
     """
     h = len(pixels)
     w = len(pixels[0])
@@ -75,8 +70,6 @@ def energy_data_to_colors(energy_data):
       1. Normalize the energy values to be between 0 and 255.
       2. Convert these values into grayscale colors, where the RGB values are
          all the same for a single color.
-
-    This is NOT one of the functions you have to implement.
     """
 
     colors = [[0 for _ in row] for row in energy_data]
